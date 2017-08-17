@@ -15,6 +15,7 @@ _ReSharper*/
 [Tt]est[Rr]esults*
 *.vssscc
 *.tmp
+*.userprefs
 
 # NuGet files to exclude
 packages/

@@ -206,7 +206,7 @@ namespace slf4net
 
                 try
                 {
-                    EventLogHelper.WriteEntry("Error initializing LoggerFactory.  Defaulting to no-operation (NOP) logger implementation.", ex);
+                    //EventLogHelper.WriteEntry("Error initializing LoggerFactory.  Defaulting to no-operation (NOP) logger implementation.", ex);
                 }
                 catch { }
             }
@@ -218,7 +218,7 @@ namespace slf4net
             var msg = "The factory resolver " + resolver.GetType().Name
                 + " returned null from GetFactory().  The fallback no operation logger factory will be used instead.";
 
-            EventLogHelper.WriteEntry(msg, null);
+            //EventLogHelper.WriteEntry(msg, null);
         }
 
         private static void EmitSubstituteLoggerWarning()
@@ -233,7 +233,7 @@ namespace slf4net
             var msg = "The following loggers will not work because the were created during the default configuration phase of the underlying logging system: "
                 + string.Join(", ", loggerNameList);
 
-            EventLogHelper.WriteEntry(msg, null);
+            //EventLogHelper.WriteEntry(msg, null);
 
         }
 

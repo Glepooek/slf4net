@@ -40,7 +40,7 @@ namespace slf4net.log4net
         protected override ILogger CreateLogger(string name)
         {
             EnsureInitialized();
-            var log4netLogger = LogManager.GetLogger(name);
+            var log4netLogger = LogManager.GetLogger("", name);
             return new Log4netLoggerAdapter(log4netLogger);
         }
 
