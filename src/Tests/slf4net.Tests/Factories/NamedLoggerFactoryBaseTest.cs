@@ -1,35 +1,36 @@
-﻿//The MIT License (MIT)
-//Copyright © 2012 Englishtown <opensource@englishtown.com>
+﻿// The MIT License (MIT)
+//
+// Copyright © 2020 EF Learning Labs <labs.oss@EF.com>
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the “Software”), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
-//Permission is hereby granted, free of charge, to any person obtaining a copy
-//of this software and associated documentation files (the “Software”), to deal
-//in the Software without restriction, including without limitation the rights
-//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//copies of the Software, and to permit persons to whom the Software is
-//furnished to do so, subject to the following conditions:
 
-//The above copyright notice and this permission notice shall be included in
-//all copies or substantial portions of the Software.
-
-//THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//THE SOFTWARE.
-
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using slf4net.Factories;
 using slf4net.Moqs.Factories;
 
 namespace slf4net.Tests.Factories
 {
-    [TestClass]
+    [TestFixture]
     public class NamedLoggerFactoryBaseTest
     {
-        [TestMethod]
+        [Test]
         public void Factories_NamedLoggerFactoryBase_GetLogger_ReturnsLoggerWithGivenName()
         {
             NamedLoggerFactoryBase target = new TestNamedLoggerFactory();
@@ -38,7 +39,7 @@ namespace slf4net.Tests.Factories
             Assert.AreEqual("foo", logger.Name);
         }
         
-        [TestMethod]
+        [Test]
         public void Factories_NamedLoggerFactoryBase_GetLogger_With_Null_Uses_Default_Name()
         {
             NamedLoggerFactoryBase target = new TestNamedLoggerFactory();
@@ -47,7 +48,7 @@ namespace slf4net.Tests.Factories
             Assert.AreEqual(string.Empty, logger.Name);
         }
         
-        [TestMethod]
+        [Test]
         public void Factories_NamedLoggerFactoryBase_GetLogger_WithSameName_ReturnsSameInstance()
         {
             NamedLoggerFactoryBase target = new TestNamedLoggerFactory();
@@ -58,7 +59,7 @@ namespace slf4net.Tests.Factories
             Assert.AreSame(logger, loggerTwo);
         }
 
-        [TestMethod]
+        [Test]
         public void Factories_NamedLoggerFactoryBase_GetLogger_WithSameNameCaseInsensitive_ReturnsSameInstance()
         {
             NamedLoggerFactoryBase target = new TestNamedLoggerFactory();
@@ -69,7 +70,7 @@ namespace slf4net.Tests.Factories
             Assert.AreSame(logger, loggerTwo);
         }
 
-        [TestMethod]
+        [Test]
         public void Factories_NamedLoggerFactoryBase_Requesting_Loggers_By_Different_Names_Returns_Different_Instances()
         {
             NamedLoggerFactoryBase target = new TestNamedLoggerFactory();
@@ -80,7 +81,7 @@ namespace slf4net.Tests.Factories
             Assert.AreNotSame(logger, loggerTwo);
         }
 
-        [TestMethod]
+        [Test]
         public void Factories_NamedLoggerFactoryBase_GetLogger_WithDifferentNames_ReturnsLoggerWithGivenNames()
         {
             NamedLoggerFactoryBase target = new TestNamedLoggerFactory();

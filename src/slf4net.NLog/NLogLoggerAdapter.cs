@@ -1,26 +1,28 @@
-﻿//The MIT License (MIT)
-//Copyright © 2012 Englishtown <opensource@englishtown.com>
-
-//Permission is hereby granted, free of charge, to any person obtaining a copy
-//of this software and associated documentation files (the “Software”), to deal
-//in the Software without restriction, including without limitation the rights
-//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//copies of the Software, and to permit persons to whom the Software is
-//furnished to do so, subject to the following conditions:
-
-//The above copyright notice and this permission notice shall be included in
-//all copies or substantial portions of the Software.
-
-//THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//THE SOFTWARE.
+﻿// The MIT License (MIT)
+//
+// Copyright © 2020 EF Learning Labs <labs.oss@EF.com>
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the “Software”), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 
 using System;
+using System.Globalization;
 using NLog;
 
 namespace slf4net.NLog
@@ -46,7 +48,7 @@ namespace slf4net.NLog
         /// by wrapping a NLog logger
         /// </summary>
         /// <param name="logger">The NLog logger to wrap</param>
-        internal NLogLoggerAdapter(Logger logger)
+        public NLogLoggerAdapter(Logger logger)
         {
             _logger = logger;
             _wrapperType = this.GetType();
@@ -57,6 +59,7 @@ namespace slf4net.NLog
 
         #region Debug
 
+        /// <inheritdoc />
         public bool IsDebugEnabled { get { return _logger.IsDebugEnabled; } }
 
         /// <summary>
@@ -137,6 +140,7 @@ namespace slf4net.NLog
 
         #region Trace
 
+        /// <inheritdoc />
         public bool IsTraceEnabled { get { return _logger.IsTraceEnabled; } }
 
         /// <summary>
@@ -217,6 +221,7 @@ namespace slf4net.NLog
 
         #region Info
 
+        /// <inheritdoc />
         public bool IsInfoEnabled { get { return _logger.IsInfoEnabled; } }
 
         /// <summary>
@@ -297,6 +302,7 @@ namespace slf4net.NLog
 
         #region Warn
 
+        /// <inheritdoc />
         public bool IsWarnEnabled { get { return _logger.IsWarnEnabled; } }
 
         /// <summary>
@@ -377,6 +383,7 @@ namespace slf4net.NLog
 
         #region Error
 
+        /// <inheritdoc />
         public bool IsErrorEnabled { get { return _logger.IsErrorEnabled; } }
 
         /// <summary>
@@ -470,7 +477,7 @@ namespace slf4net.NLog
         {
             if (_logger.IsEnabled(level))
             {
-                var le = LogEventInfo.Create(level, this.Name, message, exception);
+                var le = LogEventInfo.Create(level, this.Name, exception, CultureInfo.InvariantCulture, message);
                 _logger.Log(_wrapperType, le);
             }
         }
